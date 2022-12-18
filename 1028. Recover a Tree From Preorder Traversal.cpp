@@ -1,3 +1,4 @@
+//176 ms
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -9,6 +10,7 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
 class Solution {
     int index = 0;
 
@@ -49,5 +51,40 @@ class Solution {
 public:
     TreeNode* recoverFromPreorder(string traversal) {
         return helper(0, traversal);
+    }
+};
+
+//Condensed Version - 21 ms
+class Solution {
+    int index = 0;
+    string s;
+
+    TreeNode* helper(int level){
+        int i = index;
+        while(i < s.size() && s[i] == '-') i++;
+
+        if(i - index < level) return NULL;
+        
+        int num = 0;
+        while(i < s.size() && s[i] != '-'){
+            num *= 10;
+            num += s[i++] - '0';
+        }
+
+        if(num == 0) return NULL;
+
+        TreeNode *node = new TreeNode(num);
+
+        index = i;
+
+        node -> left = helper(level + 1);
+        node -> right = helper(level + 1);
+
+        return node;
+    }
+public:
+    TreeNode* recoverFromPreorder(string traversal) {
+        s = traversal;
+        return helper(0);
     }
 };
