@@ -1,7 +1,0 @@
-1 . Write a python script to find the greatest of n user defined numbers ? 
-2 . Golden ratio : 
-3 . image manipulation for creating a rubics cube image (pixalated)
-4 . Result calculation
-5 . string manipulation - attendence managment
-6 .  
- 
